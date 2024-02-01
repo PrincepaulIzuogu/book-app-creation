@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Add a Book</h1>
-    <form method="POST" action="{{ url_for('add_book') }}">
+    <form method="POST" action="{{ url_for('add_book') }}" onsubmit="return validateForm()">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required><br>
 
@@ -20,5 +21,7 @@
         <input type="submit" value="Add Book">
     </form>
     <a href="{{ url_for('list_books') }}">Back to List</a>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
