@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Define the Book model
@@ -13,13 +12,8 @@ class Book(db.Model):
     author = db.Column(db.String(255), nullable=False)
     publication_year = db.Column(db.Integer, nullable=False)
 
-# Use a context manager to create the tables
-with app.app_context():
-    db.create_all()
-
-def home():
-    return render_template('books.html')  # Replace 'index.html' with the correct HTML file name
-
+# Create the database tables
+db.create_all()
 
 # Route to display a list of books
 @app.route('/books')
