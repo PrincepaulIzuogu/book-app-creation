@@ -13,8 +13,9 @@ class Book(db.Model):
     author = db.Column(db.String(255), nullable=False)
     publication_year = db.Column(db.Integer, nullable=False)
 
-# Create the database tables
-db.create_all()
+# Use a context manager to create the tables
+with app.app_context():
+    db.create_all()
 
 # Route to display a list of books
 @app.route('/books')
