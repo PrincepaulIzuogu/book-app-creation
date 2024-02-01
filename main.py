@@ -17,6 +17,10 @@ class Book(db.Model):
 with app.app_context():
     db.create_all()
 
+def home():
+    return render_template('books.html')  # Replace 'index.html' with the correct HTML file name
+
+
 # Route to display a list of books
 @app.route('/books')
 def list_books():
